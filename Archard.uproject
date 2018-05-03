@@ -2,5 +2,11 @@
 	"FileVersion": 3,
 	"EngineAssociation": "{A95781CB-4867-63A3-65BC-2EA77B26F8C6}",
 	"Category": "",
-	"Description": ""
+	"Description": "",
+	"TargetPlatforms": [
+		"AllDesktop",
+		"LinuxNoEditor",
+		"MacNoEditor",
+		"WindowsNoEditor"
+	]
 }
