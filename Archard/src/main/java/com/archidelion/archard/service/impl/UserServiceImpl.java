@@ -17,11 +17,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User login(String login, String password) {
 		User user = userDao.getUserByLoginAndPassword(login, password);
-		
-		if(user == null) {
+
+		if (user == null) {
 			throw new UserNotFoundException("Wrong login or password");
 		}
-		
+
 		return user;
 	}
 

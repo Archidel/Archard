@@ -14,7 +14,7 @@ public class CharactServiceImpl implements CharactService {
 	private CharactDao charactDao;
 
 	@Override
-	public Charact addCharacter(String name) {
+	public Charact addCharacter(String name, int userId) {
 		return charactDao.save(new Charact(name));
 	}
 

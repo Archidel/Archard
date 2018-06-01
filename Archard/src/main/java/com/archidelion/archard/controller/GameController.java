@@ -20,7 +20,7 @@ public class GameController {
 
 	@Autowired
 	private CharactService charactService;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -35,11 +35,12 @@ public class GameController {
 
 	@PostMapping("/addCharacter")
 	@ResponseBody
-	public Charact login(@RequestParam(value = "name", required = true) String name) {
-		Charact charact = charactService.addCharacter(name);
+	public Charact addCharacter(@RequestParam(value = "name", required = true) String name,
+			@RequestParam(value = "user_id", required = true) int userId) {
+		Charact charact = charactService.addCharacter(name, userId);
 		return charact;
 	}
-	
+
 	@GetMapping("/character/{id}")
 	@ResponseBody
 	public Charact getCharacterById(@PathVariable String id) {
@@ -47,12 +48,5 @@ public class GameController {
 		Charact charact = charactService.getCharacterById(characterId);
 		return charact;
 	}
-	
-	@PostMapping("/addItem")
-	@ResponseBody
-	public Charact addItem(@RequestParam(value = "name", required = true) String name) {
-		Charact charact = charactService.addCharacter(name);
-		return charact;
-	}
-	
+
 }

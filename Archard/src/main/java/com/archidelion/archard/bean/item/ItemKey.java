@@ -19,34 +19,32 @@ import javax.validation.constraints.Size;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.Data;
 
 @Entity
-@Table(name = "item_keyid")
+@Table(name = "item_key")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = { "user" }, allowGetters = true)
 @Data
-public class ItemKeyId implements Serializable {
+public class ItemKey implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public ItemKeyId() {
+	public ItemKey() {
+
 	}
 
-	public ItemKeyId(String itemKeyId) {
-		this.itemKeyId = itemKeyId;
+	public ItemKey(String key) {
+		this.key = key;
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "iki_id")
+	@Column(name = "ik_id")
 	private int id;
 
 	@NotBlank(message = "Invalid item key id")
-	@Column(name = "iki_key", nullable = false, unique = true)
 	@Size(min = 2, message = "Key id should have atleast 2 characters")
-	private String itemKeyId;
+	@Column(name = "ik_key", unique = true)
+	private String key;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "keyId")
 	private List<Item> items = new ArrayList<Item>();

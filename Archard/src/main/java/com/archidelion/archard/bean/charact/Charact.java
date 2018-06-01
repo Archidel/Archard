@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -66,8 +67,8 @@ public class Charact implements Serializable {
 	@OneToOne(mappedBy = "charact", cascade = CascadeType.ALL)
 	private CharactLocation characterLocation;
 
-	@OneToOne(mappedBy = "charact", cascade = CascadeType.ALL)
-	private CharactSkills charactSkills;
+	@OneToMany(mappedBy = "charact")
+	private List<CharactSkill> charactSkills;
 
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "charact_has_item", joinColumns = { @JoinColumn(name = "i_id") }, inverseJoinColumns = {

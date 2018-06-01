@@ -36,12 +36,12 @@ public class CharactLocation implements Serializable {
 	@NotBlank(message = "Invalid z coordinations")
 	@Column(name = "chl_z", nullable = false)
 	private double z;
-	
+
 	@NotBlank(message = "Invalid y coordinations")
 	@Column(name = "chl_y", nullable = false)
-	private double y;	
-	
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ch_id")
+	private double y;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ch_id")
 	private Charact charact;
 }

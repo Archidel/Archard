@@ -36,8 +36,8 @@ public class Item implements Serializable {
 	private int id;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "iki_id", nullable = false)
-	private ItemKeyId keyId;
+	@JoinColumn(name = "ik_id", nullable = false)
+	private ItemKey keyId;
 
 	@Column(name = "i_amount")
 	private int amount;
