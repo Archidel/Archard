@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.archidelion.archard.bean.item.Item;
 import com.archidelion.archard.bean.item.ItemKey;
+import com.archidelion.archard.bean.wrapper.ItemRequestWrapper;
 import com.archidelion.archard.dao.ItemKeyDao;
 import com.archidelion.archard.service.ItemService;
 
@@ -40,9 +41,15 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public void saveItemsInInventory(String characterId, List<Item> items) {
+	public void addItemToInventory(int characterId, int amount, String itemKey) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void addItemsToInventory(int characterId, ItemRequestWrapper[] itemRequestWrappers) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

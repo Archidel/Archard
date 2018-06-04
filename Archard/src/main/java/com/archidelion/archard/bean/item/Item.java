@@ -48,4 +48,10 @@ public class Item implements Serializable {
 	@ManyToMany(mappedBy = "items")
 	private List<Charact> characts = new ArrayList<Charact>();
 
+	public Item() {
+	}
+
+	public Item(ItemKey itemKey, int amount, int slotIndex) {
+	}
+
 }

@@ -1,11 +1,11 @@
 package com.archidelion.archard.service;
 
-import java.util.List;
-
-import com.archidelion.archard.bean.item.Item;
+import com.archidelion.archard.bean.wrapper.ItemRequestWrapper;
 
 public interface ItemService {
 	void initialKey(String itemkeys);
 
-	void saveItemsInInventory(String characterId, List<Item> items);
+	void addItemToInventory(int characterId, int amount, String itemKey);
+
+	void addItemsToInventory(int characterId, ItemRequestWrapper[] itemRequestWrappers);
 }
