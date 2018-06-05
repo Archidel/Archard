@@ -19,7 +19,7 @@ public class CharactServiceImpl implements CharactService {
 	}
 
 	@Override
-	public Charact getCharacterById(int id) {
+	public Charact getCharacterById(Long id) {
 		return charactDao.getCharacterById(id);
 	}
 

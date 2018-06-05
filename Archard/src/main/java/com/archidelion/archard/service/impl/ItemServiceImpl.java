@@ -1,55 +1,35 @@
 package com.archidelion.archard.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.archidelion.archard.bean.charact.Charact;
 import com.archidelion.archard.bean.item.Item;
-import com.archidelion.archard.bean.item.ItemKey;
-import com.archidelion.archard.bean.wrapper.ItemRequestWrapper;
-import com.archidelion.archard.dao.ItemKeyDao;
+import com.archidelion.archard.dao.ItemDao;
 import com.archidelion.archard.service.ItemService;
 
 @Service
 public class ItemServiceImpl implements ItemService {
 
 	@Autowired
-	private ItemKeyDao itemKeyDao;
+	private ItemDao itemDao;
 
+	@Transactional
 	@Override
-	public void initialKey(String itemkeys) {
-		String[] arrayKeys = itemkeys.split(";");
-
-		if (arrayKeys == null) {
-			throw new ServiceException("Array key is null");
+	public void addItemsToInventory(Long characterId, List<Item> items) {
+		if (items.size() == 0) {
+			return;
 		}
 
-		if (arrayKeys.length == 0) {
-			throw new ServiceException("Array key is empty");
+		for (Item item : items) {
+			item.setCharact(new Charact(characterId));
 		}
 
-		List<ItemKey> keyList = new ArrayList<ItemKey>();
-
-		for (String key : arrayKeys) {
-			keyList.add(new ItemKey(key.trim()));
-		}
-
-		itemKeyDao.saveAll(keyList);
-	}
-
-	@Override
-	public void addItemToInventory(int characterId, int amount, String itemKey) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addItemsToInventory(int characterId, ItemRequestWrapper[] itemRequestWrappers) {
-		// TODO Auto-generated method stub
-
+		itemDao.clearInventory(characterId);
+		itemDao.saveAll(items);
 	}
 
 }

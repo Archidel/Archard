@@ -44,7 +44,7 @@ public class GameController {
 	@GetMapping("/character/{id}")
 	@ResponseBody
 	public Charact getCharacterById(@PathVariable String id) {
-		int characterId = Integer.parseInt(id);
+		Long characterId = Long.parseLong(id);
 		Charact charact = charactService.getCharacterById(characterId);
 		return charact;
 	}
