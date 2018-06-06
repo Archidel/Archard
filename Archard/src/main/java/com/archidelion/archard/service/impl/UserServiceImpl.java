@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.archidelion.archard.bean.User;
-import com.archidelion.archard.controller.exception.UserNotFoundException;
+import com.archidelion.archard.controller.exception.InvalidDataException;
 import com.archidelion.archard.dao.UserDao;
 import com.archidelion.archard.service.UserService;
+import com.archidelion.archard.service.validation.UserValidation;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -16,10 +17,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User login(String login, String password) {
+		if (!UserValidation.validUser(login, password)) {
+			throw new InvalidDataException("Incorrect login or password");
+		}
+
 		User user = userDao.getUserByLoginAndPassword(login, password);
 
 		if (user == null) {
-			throw new UserNotFoundException("Wrong login or password");
+			throw new InvalidDataException("Wrong login or password");
 		}
 
 		return user;

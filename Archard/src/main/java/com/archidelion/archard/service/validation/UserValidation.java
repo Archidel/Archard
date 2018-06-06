@@ -6,7 +6,19 @@ public final class UserValidation {
 	}
 
 	public static boolean validUser(String login, String password) {
-		return true;
+		if (validString(login) && validString(password)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static boolean validString(String line) {
+		if (line == null || line.isEmpty()) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }
