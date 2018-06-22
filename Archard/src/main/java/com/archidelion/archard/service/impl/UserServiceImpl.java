@@ -7,7 +7,6 @@ import com.archidelion.archard.bean.User;
 import com.archidelion.archard.controller.exception.InvalidDataException;
 import com.archidelion.archard.dao.UserDao;
 import com.archidelion.archard.service.UserService;
-import com.archidelion.archard.service.validation.UserValidation;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,7 +16,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User login(String login, String password) {
-		if (!UserValidation.validUser(login, password)) {
+		if (!UserService.validation(login, password)) {
 			throw new InvalidDataException("Incorrect login or password");
 		}
 

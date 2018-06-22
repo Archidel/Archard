@@ -13,9 +13,6 @@ import static org.mockito.BDDMockito.given;
 @WebMvcTest(TestGameController.class)
 public class TestGameController {
 
-	/*
-	 * @Autowired private MockMvc mvc;
-	 */
 	@MockBean
 	private GameController gameController;
 
@@ -25,9 +22,7 @@ public class TestGameController {
 		user.setLogin("Exallted");
 		user.setPassword("123456123");
 		user.setEmail("albert@gmail.com");
-
-		given(gameController.login(user.getLogin(), user.getPassword())).willReturn(user);
-
+//		given(gameController.login(user.getLogin(), user.getPassword())).willReturn(user);
 	}
 
 }

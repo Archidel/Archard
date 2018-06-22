@@ -26,17 +26,16 @@ public class GameController {
 
 	@PostMapping("/login")
 	@ResponseBody
-	public User login(@RequestParam(value = "login", required = true) String login,
+	public User log2in(@RequestParam(value = "login", required = true) String login,
 			@RequestParam(value = "password", required = true) String password) {
-
 		User user = userService.login(login, password);
 		return user;
 	}
 
 	@PostMapping("/addCharacter")
 	@ResponseBody
-	public Charact addCharacter(@RequestParam(value = "name", required = true) String name,
-			@RequestParam(value = "user_id", required = true) int userId) {
+	public Charact addCharacter(@RequestParam(value = "user_id", required = true) Long userId,
+			@RequestParam(value = "name", required = true) String name) {
 		Charact charact = charactService.addCharacter(name, userId);
 		return charact;
 	}
