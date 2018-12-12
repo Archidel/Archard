@@ -1,6 +1,6 @@
 package com.sf.archard.common.exception;
 
-public class NotFoundException extends Exception {
+public class NotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	public NotFoundException() {
