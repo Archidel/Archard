@@ -16,6 +16,8 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -27,22 +29,23 @@ public class CharactLocation implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "chl_id")
-	private long chl_id;
+	@Column(name = "id")
+	private long id;
 
-	@NotBlank(message = "Invalid x coordinations")
-	@Column(name = "chl_x", nullable = false)
-	private double x;
+	@Column(name = "name")
+	private String name;
 
-	@NotBlank(message = "Invalid z coordinations")
-	@Column(name = "chl_z", nullable = false)
-	private double z;
+	@Column(name = "x", nullable = false)
+	private float x;
 
-	@NotBlank(message = "Invalid y coordinations")
-	@Column(name = "chl_y", nullable = false)
-	private double y;
+	@Column(name = "z", nullable = false)
+	private float z;
+
+	@Column(name = "y", nullable = false)
+	private float y;
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ch_id")
+	@JoinColumn(name = "character_id")
+	@JsonIgnore
 	private Charact charact;
 }

@@ -1,4 +1,4 @@
-package com.sf.archard.auth;
+package com.sf.archard.controller;
 
 import java.util.Date;
 
@@ -30,7 +30,7 @@ public class TestController {
 	@Autowired
 	private CharactDao charactDao;
 
-	@PostMapping("/registr")
+/*	@PostMapping("/registr")
 	public void logo1ut() {
 		User user = new User();
 		user.setLogin("testLogin");
@@ -54,6 +54,7 @@ public class TestController {
 	@PostMapping("/create")
 	public void charactCreate() {
 		User user = userDao.getByLoginAndPassword("testLogin", "123456789");
+		
 		Charact charact = new Charact();
 		charact.setName("testCharacterName");
 		charact.setUser(user);
@@ -63,6 +64,6 @@ public class TestController {
 		// characters.add(charact);
 		// user.setCharacters(characters);
 		// userDao.save(user);
-	}
+	}*/
 
 }

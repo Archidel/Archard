@@ -67,4 +67,12 @@ public class User extends AuditModel implements Serializable {
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
 	private Ban ban;
 
+	public User() {
+		super();
+	}
+
+	public User(Long id) {
+		this.id = id;
+	}
+
 }

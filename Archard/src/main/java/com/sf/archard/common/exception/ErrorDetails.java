@@ -1,4 +1,4 @@
-package com.sf.archard.common.exception.model;
+package com.sf.archard.common.exception;
 
 import org.springframework.http.HttpStatus;
 import java.io.Serializable;

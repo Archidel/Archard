@@ -6,7 +6,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sf.archard.common.exception.NotFoundException;
+import com.sf.archard.common.exception.AuthenticationServiceException;
 import com.sf.archard.dao.user.UserDao;
 import com.sf.archard.model.user.User;
 
@@ -17,13 +17,7 @@ public class UserService {
 	private UserDao userDao;
 
 	public User getByLoginAndPassword(String login, String password) {
-		User user = userDao.getByLoginAndPassword(login, password);
-
-		if (user == null) {
-			throw new NotFoundException("Incorrect login or password");
-		}
-
-		return user;
+		return userDao.getByLoginAndPassword(login, password).orElseThrow(() -> new AuthenticationServiceException("Incorrect login or password"));
 	}
 
 	public List<User> findAll() {
@@ -31,7 +25,7 @@ public class UserService {
 	}
 
 	public Set<User> findAllActivated() {
-		return userDao.findAllActivated();
+		return userDao.findByActivatedTrue();
 	}
 
 }

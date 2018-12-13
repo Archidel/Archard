@@ -1,4 +1,4 @@
-package com.sf.archard.auth;
+package com.sf.archard.controller;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sf.archard.common.exception.AuthenticationServiceException;
 import com.sf.archard.model.auth.LoginRequest;
 import com.sf.archard.model.user.User;
 import com.sf.archard.service.user.UserService;
@@ -25,7 +24,7 @@ public class GameAuthController {
 	private UserService userService;
 
 	@PostMapping("/login")
-	public User authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletResponse response) throws AuthenticationServiceException {
+	public User authenticateUser(@Valid @RequestBody LoginRequest loginRequest, HttpServletResponse response) {
 		return userService.getByLoginAndPassword(loginRequest.getLogin(), loginRequest.getPassword());
 	}
 
