@@ -14,4 +14,6 @@ public interface UserDao extends JpaRepository<User, Long> {
 	Optional<User> getByLoginAndPassword(String login, String password);
 
 	Set<User> findByActivatedTrue();
+	
+	User getById(Long id);
 }

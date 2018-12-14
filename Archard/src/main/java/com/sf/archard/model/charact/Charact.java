@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,6 +55,10 @@ public class Charact extends AuditModel implements Serializable {
 	@OneToMany(mappedBy = "charact")
 	private List<StatPrimary> stats;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status", columnDefinition = "varchar(32) default 'OFFLINE'")
+	private CharactStatus status;
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
@@ -72,6 +78,12 @@ public class Charact extends AuditModel implements Serializable {
 
 	public Charact(long id, User user) {
 		this.id = id;
+		this.user = user;
+	}
+
+	public Charact(long id, CharactStatus status, User user) {
+		this.id = id;
+		this.status = status;
 		this.user = user;
 	}
 

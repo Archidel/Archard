@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sf.archard.model.charact.Charact;
 import com.sf.archard.model.charact.CharactLocation;
+import com.sf.archard.model.charact.CharactStatus;
 import com.sf.archard.model.charact.StatPrimary;
 import com.sf.archard.model.user.User;
 import com.sf.archard.service.charact.CharactService;
@@ -33,20 +35,32 @@ public class GameController {
 	@Autowired
 	private UserService userService;
 
+	@PostMapping("/users/{userId}/characters/{charactId}/status")
+	public void updateCharacterStatus(
+			@PathVariable Long userId, 
+			@PathVariable Long charactId,
+			@RequestParam("status") String status) {
+		
+		log.debug("Updating character status {} for character's {} which has User with id {}", status, charactId, userId);
+		charactService.updateStatus(userId, charactId, CharactStatus.valueOf(status.toUpperCase()));
+	}
+	
 	@PostMapping("/users/{userId}/characters/{charactId}/location")
 	public void updateCharacterLocation(
 			@PathVariable Long userId, 
 			@PathVariable Long charactId,
 			@RequestBody CharactLocation location) {
+		
 		log.debug("Updating character location {} for character's {} which has User with id {}", location, charactId, userId);
 		charactService.updateLocation(userId, charactId, location);
 	}
-	
+
 	@PostMapping("/users/{userId}/characters/{charactId}/stats")
 	public void updateStats(
 			@PathVariable Long userId, 
 			@PathVariable Long charactId,
 			@RequestBody List<StatPrimary> stats) {
+		
 		log.debug("Updating stats {} for character's {} which has User with id {}", stats, charactId, userId);
 		charactService.updateStats(userId, charactId, stats);
 	}
@@ -76,9 +90,9 @@ public class GameController {
 	}
 
 	@GetMapping("/users/{id}")
-	public List<Charact> getUserById(@PathVariable Long id) {
+	public User getUserById(@PathVariable Long id) {
 		log.debug("Fetching User with id {}", id);
-		return charactService.getCharacters(id);
+		return userService.getById(id);
 	}
 
 	@GetMapping("/users/")

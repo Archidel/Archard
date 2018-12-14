@@ -30,7 +30,7 @@ public class TestController {
 	@Autowired
 	private CharactDao charactDao;
 
-/*	@PostMapping("/registr")
+	@PostMapping("/registr")
 	public void logo1ut() {
 		User user = new User();
 		user.setLogin("testLogin");
@@ -39,7 +39,7 @@ public class TestController {
 		userDao.save(user);
 	}
 
-	@PostMapping("/addBan")
+/*	@PostMapping("/addBan")
 	public void addBan() {
 		User user = userDao.getByLoginAndPassword("testLogin", "123456789");
 		Ban ban = new Ban();

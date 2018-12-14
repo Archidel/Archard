@@ -13,6 +13,7 @@ import com.sf.archard.dao.charact.CharacterLocationDao;
 import com.sf.archard.dao.charact.CharacterStatPrimaryDao;
 import com.sf.archard.model.charact.Charact;
 import com.sf.archard.model.charact.CharactLocation;
+import com.sf.archard.model.charact.CharactStatus;
 import com.sf.archard.model.charact.StatPrimary;
 import com.sf.archard.model.user.User;
 
@@ -66,5 +67,9 @@ public class CharactService {
 	public void updateLocation(Long userId, Long charactId, CharactLocation location) {
 		location.setCharact(new Charact(charactId));
 		characterLocationDao.save(location);
+	}
+	
+	public void updateStatus(Long userId, Long charactId, CharactStatus status) {
+		charactDao.updateStatus(charactId, status);
 	}
 }

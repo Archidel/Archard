@@ -17,7 +17,8 @@ public class UserService {
 	private UserDao userDao;
 
 	public User getByLoginAndPassword(String login, String password) {
-		return userDao.getByLoginAndPassword(login, password).orElseThrow(() -> new AuthenticationServiceException("Incorrect login or password"));
+		return userDao.getByLoginAndPassword(login, password)
+				.orElseThrow(() -> new AuthenticationServiceException("Incorrect login or password"));
 	}
 
 	public List<User> findAll() {
@@ -26,6 +27,10 @@ public class UserService {
 
 	public Set<User> findAllActivated() {
 		return userDao.findByActivatedTrue();
+	}
+
+	public User getById(Long id) {
+		return userDao.getById(id);
 	}
 
 }
